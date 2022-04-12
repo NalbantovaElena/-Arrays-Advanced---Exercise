@@ -1,0 +1,72 @@
+function solve(input, arr) {
+    let result = input.slice()
+    //console.log(result)
+    arr.forEach(element => {
+        let [commands, ...el] = element.split(' ')
+
+        el[0] = Number(el[0])
+
+        //  • add <index> <element> - добавя елемент към посочения индекс 
+        //(елементите точно от тази позиция включително се изместват надясно).
+        if (commands === 'add') {
+
+            result.splice(el[0], 0, Number(el[1]));
+            //console.log(result)
+        }
+
+        // • addMany <index> <елемент 1> <елемент 2> ... <елемент n> - 
+        //добавя набор от елементи към посочения индекс.
+        if (commands === 'addMany') {
+            let index = Number(el.shift())
+            result.splice(index, 0, ...el.map(x => Number(x)));
+           // console.log(result)
+        }
+        // • contains <element> -отпечатва индекса за първото появяване на посочения елемент 
+        //(ако съществува) в масива или -1, ако елементът не е намерен.
+        if (commands === 'contains') {
+            console.log(result.indexOf(el[0]))
+        }
+
+        // • remove <index> - премахва елемента по посочения индекс.
+        if (commands === 'remove') {
+            result.splice(el[0], 1);
+           // console.log(result)
+        }
+
+        // • shift <positions> - измества всеки елемент от масива броя позиции наляво (с ротация).
+        // o Например [1, 2, 3, 4, 5] -> смяна 2 -> [3, 4, 5, 1, 2]
+        if (commands === 'shift') {
+            for (let i = 0; i < el[0]; i++) {
+                let firstEl = result.shift()
+                result.push(firstEl)
+            }
+           // console.log(result)
+        }
+
+        // • sumPairs - сумира елементите в масива по двойки (първа + втора, трета + четвърта, ...).
+        // o Например [1, 2, 4, 5, 6, 7, 8] -> [3, 9, 13, 8].
+        if (commands === 'sumPairs') {
+            let arraySum = []
+            for (let i = 0; i < result.length; i += 2) {
+                if (result[i + 1]){
+                     arraySum.push(result[i] + result[i + 1])
+                }else{
+                    arraySum.push(result[i])
+                }
+                   
+            }
+            result = arraySum
+            //console.log(result)
+
+        }
+
+        // • печат - спрете да получавате повече команди и отпечатате последното състояние на масива. }
+        if (commands === 'print') {
+            console.log(`[ ${result.join(", ")} ]`)
+        }
+
+
+    });
+
+
+}
