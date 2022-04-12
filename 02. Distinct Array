@@ -1,0 +1,10 @@
+function solve(input) {
+    let arr = []
+
+    input.forEach(element => {
+        if (!arr.includes(element)) {
+            arr.push(element)
+        }
+    });
+    console.log(arr.join(' '))
+}
