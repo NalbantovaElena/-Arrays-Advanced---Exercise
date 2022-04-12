@@ -1,0 +1,38 @@
+function solve(input) {
+    //let isBoolean = true
+    let wagons = [...input.shift().split(' ').map(Number)]
+    //console.log(wagons)
+    //console.log(typeof(wagons))
+    let maxPassagers = input.shift()
+    maxPassagers = Number(maxPassagers)
+
+    input.forEach(element => {
+        [firstEl, secondEl] = element.split(' ')
+        secondEl = Number(secondEl)
+        if (firstEl === 'Add') {
+            wagons.push(secondEl)
+            // console.log(wagons)
+        } else {
+            firstEl = Number(firstEl)
+            for (let i = 0; i < wagons.length; i++) {
+                //console.log(`${firstEl} - firstel`)
+                let index = wagons.indexOf(wagons[i])
+                //console.log(`${maxPassagers} - ${wagons[i]} - razlika`)
+                if ((maxPassagers - wagons[i]) >= firstEl) {
+                    wagons[i] = Number(wagons[i])
+                    wagons[i] += firstEl
+                    //console.log(`${wagons[i]} - nova stojnost`)
+                    wagons.splice(index, 1, wagons[i]);
+                    //console.log(wagons)
+                    break
+
+                }
+
+            }
+
+        }
+            
+
+});
+    console.log(wagons.join(' '))
+
