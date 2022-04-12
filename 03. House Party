@@ -1,0 +1,29 @@
+function solve(input) {
+    let guests = []
+    input.forEach(element => {
+        // console.log(element)
+        let [name, ...action] = element.split(' ')
+        // console.log(element.split(' '))
+        // console.log(name)
+        // console.log(action)
+        if (action.length === 2) {
+            if (!guests.includes(name)) {
+                guests.push(name)
+            } else {
+                console.log(`${name} is already in the list!`)
+            }
+        } else if (action.length === 3) {
+            if (guests.includes(name)) {
+                let index = guests.indexOf(name);
+                if (index > -1) {
+                    guests.splice(index, 1);
+                }
+            } else {
+                console.log(`${name} is not in the list!`)
+            }
+        }
+    });
+    guests.forEach(element => {
+        console.log(element)
+    });
+}
