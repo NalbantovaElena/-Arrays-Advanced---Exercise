@@ -1,0 +1,29 @@
+function solve(input) {
+    let concrete = []
+    let inputLength = input.filter(value => value < 30).length
+
+    while (inputLength !== 0) {
+        let sumConcrete = 0
+        for (let i = 0; i < input.length; i++) {
+
+            if (input[i] < 30) {
+                input[i] += 1
+                sumConcrete += 195
+
+                if (input[i] === 30) {
+                    inputLength -= 1
+                }
+            }
+
+
+        }
+        concrete.push(sumConcrete)
+
+    }
+
+
+
+    console.log(concrete.join(', '))
+    let total = concrete.reduce((a, b) => (a + b))
+    console.log(`${total * 1900} pesos`)
+}
