@@ -1,0 +1,19 @@
+function solve(oneArr, twoArr) {
+    let count = 0;
+    let elementsIns = twoArr[0] //Броя елементи ,които трябва да вземем
+    let elementsDel = twoArr[1]//Броя елементи, които трябва да изтрием от тези които сме взели
+    let searchNum = twoArr[2]// Числото което търсим след манипулациите
+
+    let arr = oneArr.slice(0, elementsIns)
+    //console.log(arr)
+    arr = arr.slice(elementsDel, arr.length)
+    //console.log(arr)
+    //insArr = insArr.concat(oneArr)
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === searchNum){
+            count++
+        }
+    }
+
+    console.log(`Number ${searchNum} occurs ${count} times.`)
+}
