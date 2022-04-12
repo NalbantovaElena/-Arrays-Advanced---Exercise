@@ -1,0 +1,11 @@
+function solve(input) {
+    let result = []
+    let sort = input.sort((a, b) => b - a)
+    //console.log(sort)
+    while (sort.length > 0) {
+        let firstEl = sort.shift()
+        let lastEl = sort.pop()
+        result.push(firstEl, lastEl)
+    }
+    console.log(result.join(' '))
+}
